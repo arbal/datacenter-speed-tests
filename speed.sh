@@ -9,7 +9,7 @@ function spinner()
 #        local lines=$temp${lines%"$temp"}
         sleep 0.15
     done
-#    printf "\r"
+    printf "\r"
 }
 
 printf "DigitalOcean Speed Test: (100MB each)\n\n"
