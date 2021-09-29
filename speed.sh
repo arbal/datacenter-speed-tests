@@ -2,11 +2,11 @@
 
 function spinner()
 {
-    local lines='|/-\'
+#    local lines='|/-\'
     while [ "$(ps a | awk '{print $1}' | grep $1)" ]; do
-        local temp=${lines#?}
-        printf "\r [%c]  " "$lines"
-        local lines=$temp${lines%"$temp"}
+#        local temp=${lines#?}
+#        printf "\r [%c]  " "$lines"
+#        local lines=$temp${lines%"$temp"}
         sleep 0.15
     done
     printf "\r"
