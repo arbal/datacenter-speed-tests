@@ -13,14 +13,14 @@
 If you trust me (which you shouldn't, _please_ don't trust random people on the internet!) these commands will download and run the scripts automatically:
 
 ```
-wget -qO - https://raw.githubusercontent.com/jakejarvis/datacenter-speed-tests/master/ping.sh | bash
-wget -qO - https://raw.githubusercontent.com/jakejarvis/datacenter-speed-tests/master/speed.sh | bash
+wget -qO - https://raw.githubusercontent.com/arbal/datacenter-speed-tests/master/ping.sh | bash
+wget -qO - https://raw.githubusercontent.com/arbal/datacenter-speed-tests/master/speed.sh | bash
 ```
 
 Or, clone the repository and make sure the scripts are executable before running:
 
 ```
-git clone https://github.com/jakejarvis/datacenter-speed-tests.git
+git clone https://github.com/arbal/datacenter-speed-tests.git
 cd datacenter-speed-tests
 chmod +x ping.sh && chmod +x speed.sh
 ./ping.sh
