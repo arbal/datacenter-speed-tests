@@ -44,11 +44,12 @@ done
 
 printf "\n\nGCP Speed Test: (10MB each)\n\n"
 
-# https://cloudharmony.com/speedtest-for-google:compute
-for DC in us-east1 us-east4 us-west1 us-west2-a us-west2-b us-west3 us-central1 northamerica-northeast1 asia-east1 asia-east2 asia-northeast1 asia-northeast2 asia-south1 asia-southeast1 australia-southeast1 europe-north1 europe-west1 europe-west2 europe-west3 europe-west4 europe-west6 southamerica-east1
-do
-    printf "$DC: "
-    printf "$(wget -O /dev/null http://$DC-gce.cloudharmony.net/probe/test10mb.jpg 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}')\n" & spinner $!
+# From https://github.com/GoogleCloudPlatform/gcping
+gcp_regions=$(curl -s https://global.gcping.com/api/endpoints | grep -o '"[a-z0-9-]*":{"Region":"[a-z0-9-]*","RegionName":"[^"]*","URL":"[^"]*"}' | awk -F'"' '{print $2, $12}' | sed 's|https://||' | sed 's|/api/endpoints||' | grep -v global)
+for gcp_region in $(echo "$gcp_regions" | awk '{print $1}'); do
+    url=$(echo "$gcp_regions" | grep "^$gcp_region " | awk '{print $2}')
+    printf "$gcp_region: "
+    printf "$(wget -O /dev/null $url 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}')\n" & spinner $!
 done
 
 
